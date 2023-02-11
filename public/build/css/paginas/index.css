@@ -1,0 +1,10 @@
+/** Media Queries **/
+.auth {
+  /*
+  max-width: 120rem;
+   width: 95%;
+  */
+  width: min(95%, 60rem);
+  margin: 0 auto;
+}
+/*# sourceMappingURL=index.css.map */
