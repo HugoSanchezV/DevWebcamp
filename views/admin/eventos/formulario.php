@@ -56,6 +56,11 @@
     <div class="formulario__campo">
         <label for="nombre" class="formulario__label">Ponente</label>
         <input type="text" class="formulario__input" id="ponentes" name="ponentes" placeholder="Buacar Ponente">
+                
+        <ul id="listado-ponentes" class="listado-ponentes"></ul>
+
+
+        <input type="hidden" name="ponente_id" value="">
     </div>
 
     <div class="formulario__campo">

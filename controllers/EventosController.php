@@ -24,7 +24,7 @@ class EventosController
         $categorias = Categoria::all();
         $dias = Dia::all('ASC');
         $horas = Hora::all('ASC');
-
+        
         $evento = new Evento();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $evento->sincronizar($_POST);
