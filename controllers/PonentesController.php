@@ -13,10 +13,14 @@ class PonentesController
 
     public static function index(Router $router)
     {
+        if (!is_admin()) {
+            header('location: /login');
+        }
+        
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
-        if(!$pagina_actual || $pagina_actual < 1){
+        if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/ponentes?page=1');
         }
 
@@ -26,12 +30,12 @@ class PonentesController
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
 
-        if($paginacion->total_paginas() < $pagina_actual){
+        if ($paginacion->total_paginas() < $pagina_actual) {
             header('Location: /admin/ponentes?page=1');
         }
         $ponentes = Ponente::paginar($registros_por_pagina, $paginacion->offset());
 
-        if(!is_admin()){
+        if (!is_admin()) {
             header('location: /login');
         }
 
@@ -44,7 +48,7 @@ class PonentesController
 
     public static function crear(Router $router)
     {
-        if(!is_admin()){
+        if (!is_admin()) {
             header('location: /login');
         }
 
@@ -53,6 +57,11 @@ class PonentesController
         $ponente = new Ponente();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_admin()) {
+                header('location: /login');
+            }
+
             // Leer imagen 
 
             if (!empty($_FILES['imagen']['tmp_name'])) {
@@ -106,7 +115,7 @@ class PonentesController
 
     public static function editar(Router $router)
     {
-        if(!is_admin()){
+        if (!is_admin()) {
             header('location: /login');
         }
 
@@ -176,11 +185,12 @@ class PonentesController
 
     public static function eliminar()
     {
-        if(!is_admin()){
-            header('location: /login');
-        }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_admin()) {
+                header('location: /login');
+            }
+
             $id = $_POST['id'];
 
             $ponente = Ponente::find($id);

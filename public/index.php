@@ -27,7 +27,7 @@ $router->post('/registro', [AuthController::class, 'registro']);
 // Formulario de olvide mi password
 $router->get('/olvide', [AuthController::class, 'olvide']);
 $router->post('/olvide', [AuthController::class, 'olvide']);
-
+ 
 // Colocar el nuevo password
 $router->get('/reestablecer', [AuthController::class, 'reestablecer']);
 $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
@@ -55,9 +55,16 @@ $router->get('/admin/eventos', [EventosController::class, 'index']);
 $router->get('/admin/eventos/crear', [EventosController::class, 'crear']);
 $router->post('/admin/eventos/crear', [EventosController::class, 'crear']);
 
+$router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
+$router->post('/admin/eventos/editar', [EventosController::class, 'editar']);
+
+$router->post('/admin/eventos/eliminar', [EventosController::class, 'eliminar']);
+
 // Api de eventos 
 $router->get('/api/eventos-horario', [APIEventos::class, 'index']);
+
 $router->get('/api/ponentes', [APIPonentes::class, 'index']);
+$router->get('/api/ponente', [APIPonentes::class, 'ponente']);
 
 // Registros
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
