@@ -1,11 +1,11 @@
 <footer class="footer">
     <div class="footer__grid">
         <div class="footer__contenido">
-            <h3 class="footer__logo"> &#60;DevWebcamp /> </h3>
+            <h3 class="footer__logo"> &#60;DevWebCamp /> </h3>
 
 
             <p class="footer__texto">
-                DevWebcamp es una conferencia para desarrolladores de todos los niveles, y se llev a cabo de forma presencial y en línea.
+                DevWebCamp es una conferencia para desarrolladores de todos los niveles, y se llev a cabo de forma presencial y en línea.
             </p>
         </div>
 
