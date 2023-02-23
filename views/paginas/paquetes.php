@@ -10,6 +10,7 @@
             </ul>
 
             <p class="paquete__precio">$0</p>
+
         </div>
 
         <div class="paquete">
