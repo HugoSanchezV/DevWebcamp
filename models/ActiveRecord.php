@@ -135,9 +135,9 @@ class ActiveRecord
     // Obtener Registros con cierta cantidad
     public static function get($limite)
     {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite} ORDER BY id DESC";
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT ${limite} ";
         $resultado = self::consultarSQL($query);
-        return array_shift($resultado);
+        return $resultado;
     }
 
     // Paginar los registros 
@@ -160,6 +160,14 @@ class ActiveRecord
     public static function ordenar($columna, $orden)
     {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$columna} {$orden} ";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    //Retornar lpor order y con un límite
+    public static function ordenarLimite($columna, $orden, $limite)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$columna} {$orden} LIMIT {$limite} ";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -189,6 +197,24 @@ class ActiveRecord
         if ($columna) {
             $query .= " WHERE {$columna} = {$valor} ";
         }
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+        return (int) array_shift($total);
+    }
+
+    // Total de registros con un array where
+    public static function totalArray($array = [])
+    {
+        $query = "SELECT COUNT(*) FROM " . static::$tabla . " WHERE ";
+
+        foreach ($array as $key => $value) {
+            if (array_key_last($array) === $key) {
+                $query .= " {$key} = '{$value}'";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+            }
+        }
+
         $resultado = self::$db->query($query);
         $total = $resultado->fetch_array();
         return (int) array_shift($total);
